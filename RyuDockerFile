@@ -1,0 +1,20 @@
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y \
+        net-tools \
+        traceroute \
+        inetutils-ping \
+    git \
+    python3 \
+    python3-pip
+
+RUN git clone https://github.com/faucetsdn/ryu.git
+RUN cd ryu; pip install .
+RUN pip install netmiko
+
+ADD ryuBgpConf.py ryu/ryu/services/protocols/bgp/
+
+EXPOSE 6633
+EXPOSE 6653
+
+CMD ["ryu-manager", "--bgp-app-config", "ryu/ryu/services/protocols/bgp/ryuBgpConf.py","ryu/ryu/services/protocols/bgp/application.py"]
