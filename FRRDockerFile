@@ -1,0 +1,5 @@
+FROM frrouting/frr:v8.2.2
+EXPOSE  179
+ADD bgpd.conf /etc/frr/
+ADD daemonds /etc/frr/
+CMD ['chmod 640 bgpd.conf']
