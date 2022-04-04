@@ -49,6 +49,7 @@ def spin_up_dockers():
     print("docker call to spin up ryu container")
     os.system("docker run -itd --name frr frr")
     print("docker call to spin up frr container")
+    os.system("sudo docker stop frr && sudo docker stop ryu")
 
 
 if docker_file_generate() == True:
