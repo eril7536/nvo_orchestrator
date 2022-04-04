@@ -4,3 +4,4 @@ clouds:
      username: 'admin'
      password: 'admin'
      project_name: 'admin'
+     auth_url: 'https://identity.192.168.56.70'
