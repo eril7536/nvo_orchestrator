@@ -93,7 +93,7 @@ SSH = {
 
 
 """
-    with open("./ryuBgp/bgp_conf.py","w") as file:
+    with open("./ryuBgp/ryuBgpConf.py","w") as file:
             file.write(bgp_conf)
     print("build ryu bgp conf file")
 
