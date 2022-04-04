@@ -31,8 +31,9 @@ def docker_file_generate():
         EXPOSE  179
         ADD bgpd.conf /etc/frr/
         ADD daemons /etc/frr/
-        CMD ['chmod 640 bgpd.conf']  
-        """ ## CMD still needs daemons to restart
+        """
+        # CMD ['chmod 640 bgpd.conf']  
+        # """ ## CMD still needs daemons to restart
     
         with open("./frrBgp/Dockerfile","w") as file:
             file.write(dockerfile_frr)
@@ -50,8 +51,8 @@ def spin_up_dockers():
     print("build ryu dockerfile")
     os.system(f"docker build -t ryu ./ryuBgp/. ")
     print("docker call to spin up ryu container")
-    os.system("docker run -itd --name ryu ryu")
-    print("docker call to spin up frr container")
+    # os.system("docker run -itd --name ryu ryu")
+    # print("docker call to spin up frr container")
     os.system("docker run -itd --name frr frr")
     # os.system("sudo docker start frr && sudo docker start ryu")
 
