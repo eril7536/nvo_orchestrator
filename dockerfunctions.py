@@ -1,5 +1,5 @@
 import os
-from bgpSetup import ryuConf
+from bgpSetup import ryuConf,quaggaConf
 def docker_file_generate():
     if os.path.isdir("./ryuBgp/") == True:
         os.system(f"docker build -t ryu ./ryuBgp/. ")
@@ -20,23 +20,28 @@ def docker_file_generate():
         
         with open("./ryuBgp/Dockerfile","w") as file:
             file.write(dockerfile_ryu)
+        ryuConf()
     else:
-        os.mkdir("./ryuBgp",'0o777')
+        os.mkdir("./ryuBgp",0o777)
         docker_file_generate()
 
     if os.path.isdir("./frrBgp/") == True:
         os.system(f"docker build -t frr ./frrBgp/. ")
         dockerfile_frr = """
-
-        
+        FROM frrouting/frr-debian
+        EXPOSE  179
+        ADD bgpd.conf /etc/frr/
+        ADD daemonds /etc/frr/
+        CMD ['chmod 640 bgpd.conf && systemctl restart ']
         """
         with open("./frrBgp/Dockerfile","w") as file:
             file.write(dockerfile_ryu)
+        quaggaConf("1","172.17.0.1","2")
     else:
-        os.mkdir("./frrBgp",'0o777')
+        os.mkdir("./frrBgp",0o777)
         docker_file_generate()  
 
-    print('make docker file')
+    print('made docker files')
 def spin_up_dockers():
     os.system("docker run -itd ryu")
     print("docker call to spin up ryu container")
@@ -44,3 +49,5 @@ def spin_up_dockers():
     print("docker call to spin up frr container")
 
 
+if docker_file_generate():
+    print("docker spin") #spin_up_dockers()

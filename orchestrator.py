@@ -15,9 +15,8 @@ def bgp(local_as_ryu, router_id_ryu, neighbor_id_ryu, remote_as_ryu, local_as_q,
     quaggaConf(local_as_q, router_id_q, neighbor_id_q, remote_as_q)
 
 def docker():
-    docker_file_generate_ryu()
-    spin_up_ryu()
+    
 if __name__ == "__main__":
     # openstack()
-    # docker()
+    docker()
     # bgp(local_as_ryu, router_id_ryu, neighbor_id_ryu, remote_as_ryu, local_as_q, router_id_q, neighbor_id_q, remote_as_q)

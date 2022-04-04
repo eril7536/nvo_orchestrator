@@ -1,7 +1,7 @@
 import os
 
 
-def ryuConf(local_as, router_id, neighbor_id, remote_as):
+def ryuConf():
     bgp_conf = """
 from __future__ import absolute_import
 
@@ -44,10 +44,10 @@ from ryu.services.protocols.bgp.bgpspeaker import REDUNDANCY_MODE_SINGLE_ACTIVE
 BGP = {
 
     # AS number for this BGP instance.
-    'local_as': {local_as},
+    'local_as': '1',
 
     # BGP Router ID.
-    'router_id': {router_id},
+    'router_id': '172.17.0.1',
 
     # Default local preference
     'local_pref': 100,
@@ -60,8 +60,8 @@ BGP = {
     # BGPSpeaker.neighbor_add() method.
     'neighbors': [
         {
-            'address': '{neighbor_id}',
-            'remote_as': {remote_as},
+            'address': '172.17.0.2',
+            'remote_as': 2,
             'enable_ipv4': True,
         },
     ],
@@ -92,12 +92,8 @@ SSH = {
 }
 
 
-""".format(local_as, router_id, neighbor_id, remote_as)
-
-    if os.path.exists("./ryuBgp/bgp_conf.py"):
-        return 
-    else:
-        with open("./ryuBgp/bgp_conf.py","w") as file:
+"""
+    with open("./ryuBgp/bgp_conf.py","w") as file:
             file.write(bgp_conf)
     print("build ryu bgp conf file")
 
@@ -200,15 +196,9 @@ pathd_options="  -A 127.0.0.1"
     exit-address-family
     neighbor {neighbor_id} remote-as {remote_as}
     """
-    if os.path.exists("./frrBgp/daemons"):
-        return 
-    else:
-        with open("./frrBgp/daemons","w") as file:
+    with open("./frrBgp/daemons","w") as file:
             file.write(daemons)
-    if os.path.exists("./frrBgp/bdpd.conf"):
-        return 
-    else:
-        with open("./frrBgp/bgpd.conf","w") as file:
+    with open("./frrBgp/bgpd.conf","w") as file:
             file.write(bgpd_conf)
             
     print("build frr conf files")
