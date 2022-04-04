@@ -2,7 +2,6 @@ import os
 from bgpSetup import ryuConf,quaggaConf
 def docker_file_generate():
     if os.path.isdir("./ryuBgp/") == True:
-        os.system(f"docker build -t ryu ./ryuBgp/. ")
         dockerfile_ryu = """
         FROM ubuntu:latest
         RUN apt-get update && apt-get install -y net-tools traceroute inetutils-ping git python3 python3-pip
@@ -26,7 +25,6 @@ def docker_file_generate():
         docker_file_generate()
 
     if os.path.isdir("./frrBgp/") == True:
-        os.system(f"docker build -t frr ./frrBgp/. ")
         dockerfile_frr = """
         FROM frrouting/frr-debian
         EXPOSE  179
@@ -45,11 +43,15 @@ def docker_file_generate():
     return True
 
 def spin_up_dockers():
-    os.system("docker run -itd --name ryu ryu")
+    print("build frr dockerfile")
+    os.system(f"docker build -t frr ./frrBgp/. ")
+    print("build ryu dockerfile")
+    os.system(f"docker build -t ryu ./ryuBgp/. ")
     print("docker call to spin up ryu container")
-    os.system("docker run -itd --name frr frr")
+    os.system("docker run -itd --name ryu ryu")
     print("docker call to spin up frr container")
-    os.system("sudo docker start frr && sudo docker start ryu")
+    os.system("docker run -itd --name frr frr")
+    # os.system("sudo docker start frr && sudo docker start ryu")
 
 
 if docker_file_generate() == True:
