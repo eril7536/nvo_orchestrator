@@ -42,6 +42,7 @@ def docker_file_generate():
         docker_file_generate()  
 
     print('made docker files')
+    return True
 
 def spin_up_dockers():
     os.system("docker run -itd ryu")
@@ -50,6 +51,6 @@ def spin_up_dockers():
     print("docker call to spin up frr container")
 
 
-if docker_file_generate():
+if docker_file_generate() == True:
     print("docker spin") #
     spin_up_dockers()
