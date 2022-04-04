@@ -31,7 +31,7 @@ def docker_file_generate():
         FROM frrouting/frr-debian
         EXPOSE  179
         ADD bgpd.conf /etc/frr/
-        ADD daemonds /etc/frr/
+        ADD daemons /etc/frr/
         CMD ['chmod 640 bgpd.conf && systemctl restart ']
         """
         with open("./frrBgp/Dockerfile","w") as file:
