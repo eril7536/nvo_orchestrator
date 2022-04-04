@@ -13,9 +13,10 @@ def docker_file_generate():
 
         EXPOSE 6633
         EXPOSE 6653
-
-        CMD ["ryu-manager", "--bgp-app-config", "ryu/ryu/services/protocols/bgp/ryuBgpConf.py","ryu/ryu/services/protocols/bgp/application.py"]
+        EXPOSE 179
         """
+        # CMD ["ryu-manager", "--bgp-app-config", "ryu/ryu/services/protocols/bgp/ryuBgpConf.py","ryu/ryu/services/protocols/bgp/application.py"]
+        # """
         
         with open("./ryuBgp/Dockerfile","w") as file:
             file.write(dockerfile_ryu)
