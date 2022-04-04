@@ -35,13 +35,14 @@ def docker_file_generate():
         CMD ['chmod 640 bgpd.conf && systemctl restart ']
         """
         with open("./frrBgp/Dockerfile","w") as file:
-            file.write(dockerfile_ryu)
+            file.write(dockerfile_frr)
         quaggaConf("1","172.17.0.1","2")
     else:
         os.mkdir("./frrBgp",0o777)
         docker_file_generate()  
 
     print('made docker files')
+
 def spin_up_dockers():
     os.system("docker run -itd ryu")
     print("docker call to spin up ryu container")
