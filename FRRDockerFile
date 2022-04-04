@@ -2,4 +2,4 @@ FROM frrouting/frr-debian
 EXPOSE  179
 ADD bgpd.conf /etc/frr/
 ADD daemonds /etc/frr/
-CMD ['chmod 640 bgpd.conf && systemctl restart ']
+CMD ['chmod 640 bgpd.conf']

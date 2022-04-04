@@ -30,8 +30,9 @@ def docker_file_generate():
         EXPOSE  179
         ADD bgpd.conf /etc/frr/
         ADD daemons /etc/frr/
-        CMD ['chmod 640 bgpd.conf && systemctl restart ']
-        """
+        CMD ['chmod 640 bgpd.conf']  
+        """ ## CMD still needs daemons to restart
+    
         with open("./frrBgp/Dockerfile","w") as file:
             file.write(dockerfile_frr)
         quaggaConf("1","172.17.0.1","2")
