@@ -45,9 +45,9 @@ def docker_file_generate():
     return True
 
 def spin_up_dockers():
-    os.system("docker run -itd ryu")
+    os.system("docker run -itd --name ryu ryu")
     print("docker call to spin up ryu container")
-    os.system("docker run -itd frr")
+    os.system("docker run -itd --name frr frr")
     print("docker call to spin up frr container")
 
 
