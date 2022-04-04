@@ -51,4 +51,5 @@ def spin_up_dockers():
 
 
 if docker_file_generate():
-    print("docker spin") #spin_up_dockers()
+    print("docker spin") #
+    spin_up_dockers()
