@@ -67,21 +67,21 @@ def create_network(network_name, subnet_name, cidr_net, gateway):
 
     print(example_subnet)
 
-def open_port(conn):
+def open_port(name,data_dir,proto,portMax, portMin):
     print("Open a port:")
 
     example_sec_group = conn.network.create_security_group(
-        name='openstacksdk-example-security-group')
+        name=name)
 
     print(example_sec_group)
 
     example_rule = conn.network.create_security_group_rule(
         security_group_id=example_sec_group.id,
-        direction='ingress',
+        direction=data_dir,
         remote_ip_prefix='0.0.0.0/0',
-        protocol='HTTPS',
-        port_range_max='443',
-        port_range_min='443',
+        protocol=proto,
+        port_range_max=portMax,
+        port_range_min=portMin,
         ethertype='IPv4')
 
     print(example_rule)
@@ -92,6 +92,7 @@ def create_server(SERVER_NAME, NETWORK_NAME):
     image = conn.compute.find_image(IMAGE_NAME)
     flavor = conn.compute.find_flavor(FLAVOR_NAME)
     network = conn.network.find_network(NETWORK_NAME)
+
     # keypair = create_keypair(conn)
 
     server = conn.compute.create_server(

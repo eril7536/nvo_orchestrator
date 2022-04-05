@@ -15,4 +15,5 @@ def build_vms():
 
 
 def build_sec_groups():
+    open_port("NO_SSH","ingress","SSH","22","22")
     print("security")
