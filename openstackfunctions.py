@@ -1,5 +1,5 @@
 import openstack
-
+# https://docs.openstack.org/openstacksdk/latest/user/index.html
 IMAGE_NAME = "cirros-0.5.2-x86_64-disk"
 FLAVOR_NAME = "cirros256"
 # Initialize and turn on debug logging
@@ -86,17 +86,17 @@ def open_port(conn):
 
     print(example_rule)
 
-def create_server():
+def create_server(SERVER_NAME, NETWORK_NAME):
     print("Create Server:")
-
+    
     image = conn.compute.find_image(IMAGE_NAME)
     flavor = conn.compute.find_flavor(FLAVOR_NAME)
     network = conn.network.find_network(NETWORK_NAME)
-    keypair = create_keypair(conn)
+    # keypair = create_keypair(conn)
 
     server = conn.compute.create_server(
         name=SERVER_NAME, image_id=image.id, flavor_id=flavor.id,
-        networks=[{"uuid": network.id}], key_name=keypair.name)
+        networks=[{"uuid": network.id}])#, key_name=keypair.name)
 
     server = conn.compute.wait_for_server(server)
 
@@ -104,4 +104,4 @@ def create_server():
     #     key=PRIVATE_KEYPAIR_FILE,
     #     ip=server.access_ipv4))
 
-list_routers(conn)
+create_server('test1_py',"private")
