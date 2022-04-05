@@ -103,6 +103,6 @@ def create_server(SERVER_NAME, NETWORK_NAME):
 
 def create_router():
     conn.network.create_router(name="RouterPy")
-    conn.network.add_router_interface({id:"RouterPy"}, subnet_id="NetA")
-    conn.network.add_router_interface({id:"RouterPy"}, subnet_id="NetB")
-    conn.network.add_router_interface({id:"RouterPy"}, subnet_id="public")
+    conn.network.add_router_interface([{id:"RouterPy"}], subnet_id="NetA")
+    conn.network.add_router_interface([{id:"RouterPy"}], subnet_id="NetB")
+    conn.network.add_router_interface([{id:"RouterPy"}], subnet_id="public")
