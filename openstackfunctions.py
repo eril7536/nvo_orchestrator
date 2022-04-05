@@ -101,8 +101,5 @@ def create_server(SERVER_NAME, NETWORK_NAME):
 
     server = conn.compute.wait_for_server(server)
 
-    # print("ssh -i {key} root@{ip}".format(
-    #     key=PRIVATE_KEYPAIR_FILE,
-    #     ip=server.access_ipv4))
-
-# create_server('test1_py',"private")
+def build_router():
+    router = conn.network.create_router(name="RouterPy")
