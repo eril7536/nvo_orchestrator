@@ -19,4 +19,4 @@ def build_sec_groups():
     print("security")
 
 def build_router():
-    build_router()
+    create_router()

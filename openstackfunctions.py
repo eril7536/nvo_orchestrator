@@ -101,5 +101,5 @@ def create_server(SERVER_NAME, NETWORK_NAME):
 
     server = conn.compute.wait_for_server(server)
 
-def build_router():
+def create_router():
     router = conn.network.create_router(name="RouterPy")
