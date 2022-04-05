@@ -104,4 +104,5 @@ def create_server(SERVER_NAME, NETWORK_NAME):
     #     key=PRIVATE_KEYPAIR_FILE,
     #     ip=server.access_ipv4))
 
-create_server('test1_py',"private")
+# create_server('test1_py',"private")
+list_servers(conn)
