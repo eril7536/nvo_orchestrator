@@ -103,7 +103,7 @@ def create_server(SERVER_NAME, NETWORK_NAME):
 
 def create_router():
     conn.network.create_router(name="RouterPy")
-    # conn.network.router.add_interface()
-    conn.network.add_router_interface({router:"RouterPy"}, subnet_id="NetA")
-    # conn.network.add_router_interface([{id:"RouterPy"}], subnet_id="NetB")
-    # conn.network.add_router_interface([{id:"RouterPy"}], subnet_id="public")
+    ## The functionality to add the interfaces doesnt work.
+    # conn.network.add_router_interface({router:"RouterPy"}, subnet_id="NetA", port_id=None)
+    conn.network.add_router_interface({router:"RouterPy"}, subnet_id="NetB")
+    conn.network.add_router_interface({router:"RouterPy"}, subnet_id="public")
