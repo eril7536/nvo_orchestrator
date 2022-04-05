@@ -8,6 +8,9 @@ def build_vns():
 
 
 def build_vms():
+    create_server("VM1","NETA")
+    create_server("VM2_A","NETA")
+    create_server("VM2_B","NETB")
     print("vms")
 
 
