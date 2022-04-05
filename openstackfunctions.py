@@ -50,20 +50,20 @@ def list_servers(conn):
     for server in conn.compute.servers():
         print(server)
 
-def create_network(conn):
+def create_network(network_name, subnet_name, cidr_net, gateway):
     print("Create Network:")
 
     example_network = conn.network.create_network(
-        name='openstacksdk-example-project-network')
+        name=network_name)
 
     print(example_network)
 
     example_subnet = conn.network.create_subnet(
-        name='openstacksdk-example-project-subnet',
+        name=subnet_name,
         network_id=example_network.id,
         ip_version='4',
-        cidr='10.0.2.0/24',
-        gateway_ip='10.0.2.1')
+        cidr=cidr_net,
+        gateway_ip=gateway)
 
     print(example_subnet)
 
@@ -105,4 +105,3 @@ def create_server(SERVER_NAME, NETWORK_NAME):
     #     ip=server.access_ipv4))
 
 # create_server('test1_py',"private")
-list_servers(conn)

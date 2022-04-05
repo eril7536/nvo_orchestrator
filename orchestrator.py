@@ -1,19 +1,15 @@
-from unicodedata import name
-from dockerfunctions import docker_file_generate, spin_up_containers
-from openstackfunctions import *
-from dockerfunctions import *
+from openstack_builder import build_vns, build_vms, build_sec_groups
+import dockerfunctions
 from bgpSetup import *
 
 def openstack():
-    #This function call the openstack subfunctions to deploy vm, network and security groups
-    deployOsVm()
-    deployOsNw()
-    deployOsSec()
-
+    build_vns()
+    # build_vms()
+    # build_sec_groups()
 
 def docker():
     dockerfunctions()
     
 if __name__ == "__main__":
-    # openstack()
-    docker()
+    openstack()
+    # docker()
