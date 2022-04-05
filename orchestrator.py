@@ -2,7 +2,7 @@ from openstack_builder import build_vns, build_vms, build_sec_groups, build_rout
 from dockerfunctions import docker_file_generate, spin_up_dockers
 
 def openstack():
-    # build_vns()
+    build_vns()
     # build_vms()
     # build_sec_groups()
     build_router()
