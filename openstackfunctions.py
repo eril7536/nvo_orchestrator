@@ -86,8 +86,6 @@ def open_port(conn):
 
     print(example_rule)
 
-
-
 def create_server():
     print("Create Server:")
 
@@ -105,3 +103,5 @@ def create_server():
     # print("ssh -i {key} root@{ip}".format(
     #     key=PRIVATE_KEYPAIR_FILE,
     #     ip=server.access_ipv4))
+
+list_networks(conn)
