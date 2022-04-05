@@ -102,4 +102,7 @@ def create_server(SERVER_NAME, NETWORK_NAME):
     server = conn.compute.wait_for_server(server)
 
 def create_router():
-    router = conn.network.create_router(name="RouterPy")
+    conn.network.create_router(name="RouterPy")
+    conn.network.add_router_interface("RouterPy", subnet_id="NetA")
+    conn.network.add_router_interface("RouterPy", subnet_id="NetB")
+    conn.network.add_router_interface("RouterPy", subnet_id="public")
