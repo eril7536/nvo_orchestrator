@@ -1,8 +1,9 @@
 clouds:
  admin:
    auth:
-     username: 'admin'
-     password: 'admin'
-     user_domain_id: 'default'
-     project_name: 'admin'
-     auth_url: 'http://192.168.56.70/identity/v3/'
+     username: admin
+     password: admin
+     user_domain_name: default
+     project_domain_name: default
+     project_name: admin
+     auth_url: http://192.168.56.70/identity
