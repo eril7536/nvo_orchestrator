@@ -17,3 +17,6 @@ def build_vms():
 def build_sec_groups():
     open_port("NO_SSH","ingress","tcp","22","22")
     print("security")
+
+def build_router():
+    create_router()
